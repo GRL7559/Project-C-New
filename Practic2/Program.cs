@@ -33,16 +33,19 @@
 
         static void TabMulti()
         {
-            Console.WriteLine("Таблица умножения от 1 до 10");
-            int[] M = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-            for (int i = 0; i < 9; i++)
+            Console.WriteLine("Таблица умножения от 1 до 9");
+            int[,] M =new int [10,10];
+            for (int i = 1; i < 10; i++)
             {
+                Console.WriteLine("");
                 for (int j = 1; j < 10; j++)
                 {
-                    Console.Write(M[i]*j+"\t");
+                    M[i,j] = i*j;
+                    Console.Write(M[i,j]+"\t");
                 }
                 Console.WriteLine("");
             }
+            Console.WriteLine("");
         }
 
         static void Divs()
