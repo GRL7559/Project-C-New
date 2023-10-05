@@ -4,7 +4,7 @@
     {
         static void Main()
         {
-            Console.WriteLine("Для выбора октавы нажмите 1 / 2 / 3");
+            Console.WriteLine("Функциональные клавиши : Q,W,E,R,T,Y,U,I,O,P,[,],| \nДля выбора октавы нажмите 1 / 2 / 3 \nДля выхода из программы нажмите Escape");
             bool stop=true;
             ConsoleKey choiseR = ConsoleKey.D1;
             while (stop==true)
