@@ -7,20 +7,12 @@ using System.Threading.Tasks;
 
 namespace Practic5
 {
-    internal class Arrows
+    public static class Arrows
     {
-        private int maxpos;
-        private int minpos;
-        private int indexpart;
         public static int parametrs;
         public static int parametrscost;
-        public Arrows(int max , int min , int ind) 
-        {
-            maxpos = max;
-            minpos = min;
-            indexpart = ind;
-        }
-        public void Arrow()
+
+        public static void Arrow(int maxpos, int minpos, int indexpart)
         {
             bool stop = false;
             int pos = minpos;
@@ -63,7 +55,7 @@ namespace Practic5
                                 Tortiki.Total();
                             }
                             parametrs = pos-2;
-                            Tortiki.Particulars(parametrs);
+                            Order.Particulars(parametrs);
                             break;
                         case ConsoleKey.Escape:
                             Environment.Exit(0);
@@ -95,13 +87,13 @@ namespace Practic5
                             }
                             break;
                         case ConsoleKey.Escape:
-                            Tortiki.Menu();
+                            Order.Menu();
                             stop = true;
                             break;
                         case ConsoleKey.Enter:
                             parametrscost = pos - 2;
                             Tortiki.Change_zakaz(parametrs, parametrscost);
-                            Tortiki.Menu();
+                            Order.Menu();
                             stop = true;
                             break;
                     }
