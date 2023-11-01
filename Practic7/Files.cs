@@ -11,7 +11,7 @@ namespace Practic7
 {
     static class Files
     {
-        private static string Check_Type(string obj)
+        public static string Check_Type(string obj)
         {
             if (File.Exists(obj))
             {
@@ -28,8 +28,11 @@ namespace Practic7
         }
         private static void Show_Dir(string dir = "C:\\Program Files")
         {
+            string name_file;
+            string name_path;
             while (true)
-            {   
+            {
+
                 int k = 9;
                 Console.Clear();
                 Console.WriteLine("Enter - Перейти в директорию / открыть файл\nEscape - Выйти из директории / Закрыть программу\nD - удалить файл\tC - создать файл\nUpArrow - вверх \tDownArrow - вниз");
@@ -43,36 +46,45 @@ namespace Practic7
                 string[] Direct = paths.Concat(files).ToArray();
                 foreach (string path in paths)
                 {
-                    //string indent = new(' ', 25 - Path.GetFileName(path).Length);{indent}
-                    Console.WriteLine($"  {Path.GetFileName(path)}\t\t\t{path.Length}\t\t\t{File.GetLastWriteTime(path)}");
+                    name_path = Path.GetFileName(path);
+                    //{ new string(' ', 25 - name_path.Length)}
+                    Console.WriteLine($"  {name_path}\t\t\t{path.Length}\t\t\t{File.GetLastWriteTime(path)}");
                     k += 1;
                 }
                 foreach (string file in files)
                 {
-                    //string indent = new(' ', 25 - Path.GetFileName(file).Length);{indent}
-                    Console.WriteLine($"  {Path.GetFileName(file)}\t\t\t{file.Length}\t\t\t{File.GetLastWriteTime(file)}");
+                    name_file = Path.GetFileName(file);
+                    //{ new string(' ', 25 - name_file.Length)}
+                    Console.WriteLine($"  {name_file}\t\t\t{file.Length}\t\t\t{File.GetLastWriteTime(file)}");
                     k += 1;
                 }
-                int pos = Arrows.Arrow(k-1, 9);
-                if (pos == -7559)
+                int[] pos = Arrows.Arrow(k-1, 9);
+                switch (pos[0])
                 {
-                    return;
+                    case -1: break;
+                    case -7559:return;
+                    case -200:
+                        Change.Delete(Direct[pos[1] - 9]);
+                        break;
+                    case -8:
+                        Change.Create(dir);
+                        continue;
                 }
-                string type = Check_Type(Direct[pos]);
+                string type = Check_Type(Direct[pos[1] - 9]);
                 switch (type)
                 {
                     case "file":
-                        if (Direct[pos].EndsWith(".exe"))
+                        if (Direct[pos[1] - 9].EndsWith(".exe"))
                         {
-                            Process.Start(Direct[pos]);
+                            Process.Start(Direct[pos[1] - 9]);
                         }
                         else
                         {
-                            Process.Start(new ProcessStartInfo { FileName = Direct[pos], UseShellExecute = true });
+                            Process.Start(new ProcessStartInfo { FileName = Direct[pos[1] - 9], UseShellExecute = true });
                         }
                         break;
                     case "Dir":
-                        Show_Dir(Direct[pos]);
+                        Show_Dir(Direct[pos[1] - 9]);
                         break;
                     case "NONE":
                         Console.WriteLine("Указанный путь не является допустимым файлом или директорией.");
@@ -86,13 +98,12 @@ namespace Practic7
             DriveInfo[] Drives = DriveInfo.GetDrives();
             foreach (DriveInfo drive in Drives)
             {
-                Console.WriteLine($"  Диск:{drive.Name}  Свободно {drive.TotalFreeSpace} из {drive.TotalSize} байт");
+                Console.WriteLine($"  Диск:{drive.Name}  Свободно {Math.Round(drive.TotalFreeSpace / Math.Pow(1024,3))} ГБ из {Math.Round(drive.TotalSize / Math.Pow(1024, 3))} ГБ");
             }
-            int pos = Arrows.Arrow(Drives.Length, 1) - 1;
-            Console.WriteLine(Drives[pos].Name);
-            Show_Dir(Drives[pos].Name);
-            int pos_d = Directory.GetDirectories(Drives[pos].Name).Length + Directory.GetFiles(Drives[pos].Name).Length;
-            Console.SetCursorPosition(0, pos_d+1);
+            int[] pos = Arrows.Arrow(Drives.Length, 1);
+            Console.WriteLine(Drives[pos[1]-1].Name);
+            Show_Dir(Drives[pos[1]-1].Name);
+            Console.Clear();
             Environment.Exit(0);
         }
     }

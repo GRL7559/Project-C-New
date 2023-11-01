@@ -9,7 +9,7 @@ namespace Practic5
 {
     public static class Arrows
     {
-        public static int Arrow(int maxpos, int minpos)
+        public static int[] Arrow(int maxpos, int minpos)
         {
             int pos = minpos;
 
@@ -44,10 +44,18 @@ namespace Practic5
                         }
                         break;
                     case ConsoleKey.Escape:
-                        pos = -7559;
-                        return pos;
-                    //case ConsoleKey.C: return pos;
-                    //case ConsoleKey.D: return pos;
+                        int[] exit = new[] {-7559, pos};
+                        return exit;
+                    case ConsoleKey.D:
+                        int code_d = -200;
+                        int[] del= new[] {code_d , pos }; 
+                        return del;
+                    case ConsoleKey.C:
+                        int[] cre = new[] {-8 , pos };
+                        return cre;
+                    case ConsoleKey.Enter:
+                        int[] rep = new[] {-1 ,pos};
+                        return rep;
                 }
             } while (true);
         }

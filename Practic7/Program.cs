@@ -26,6 +26,7 @@
                             Main();
                             break;
                         case ConsoleKey.Escape:
+                            Console.Clear();
                             Environment.Exit(0);
                             break;
                     }
