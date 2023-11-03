@@ -47,15 +47,13 @@ namespace Practic7
                 foreach (string path in paths)
                 {
                     name_path = Path.GetFileName(path);
-                    //{ new string(' ', 25 - name_path.Length)}
-                    Console.WriteLine($"  {name_path}\t\t\t{path.Length}\t\t\t{File.GetLastWriteTime(path)}");
+                    Console.WriteLine($"  {name_path,-25}\t\t\t{path.Length}\t\t\t{File.GetLastWriteTime(path)}");
                     k += 1;
                 }
                 foreach (string file in files)
                 {
                     name_file = Path.GetFileName(file);
-                    //{ new string(' ', 25 - name_file.Length)}
-                    Console.WriteLine($"  {name_file}\t\t\t{file.Length}\t\t\t{File.GetLastWriteTime(file)}");
+                    Console.WriteLine($"  {name_file,-25}\t\t\t{file.Length}\t\t\t{File.GetLastWriteTime(file)}");
                     k += 1;
                 }
                 int[] pos = Arrows.Arrow(k-1, 9);
@@ -64,10 +62,10 @@ namespace Practic7
                     case -1: break;
                     case -7559:return;
                     case -200:
-                        Change.Delete(Direct[pos[1] - 9]);
-                        break;
+                        Change.Delete(Direct[pos[1] - 9], k + 1);
+                        continue;
                     case -8:
-                        Change.Create(dir);
+                        Change.Create(dir,k+1);
                         continue;
                 }
                 string type = Check_Type(Direct[pos[1] - 9]);

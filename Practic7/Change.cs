@@ -10,21 +10,35 @@ namespace Practic7
 {
     static class Change
     {
-        public static void Delete(string dir)
+        public static void Delete(string dir, int pos)
         {
+            Console.SetCursorPosition(0, pos);
+            Console.WriteLine("Вы точно хотите удалить этот объект?");
+            string confirm = Console.ReadLine();
             string type = Files.Check_Type(dir);
-            switch (type)
+            switch (confirm)
             {
-                case "file":
-                    Delete_File(dir);
+                case "да":
+                    switch (type)
+                    {
+                        case "file":
+                            File.Delete(dir);
+                            break;
+                        case "Dir":
+                            Directory.Delete(dir, true);
+                            break;
+                    }
                     break;
-                case "Dir":
-                    Delete_Dir(dir);
+                case "нет":
+                    break;
+                default: 
+                    Console.WriteLine("Введено некоректное значение");
                     break;
             }
         }
-        public static void Create(string dir)
+        public static void Create(string dir,int pos)
         {
+            Console.SetCursorPosition(0, pos);
             Console.WriteLine("Что вы хотите создать ? 1.Файл 2.Директория");
             int type = Convert.ToInt32(Console.ReadLine());
             switch (type)
@@ -35,13 +49,16 @@ namespace Practic7
                 case 2:
                     Create_Dir(dir);
                     break;
+                default: 
+                    Console.WriteLine("Введено некорректное значение");
+                    break;
             }
         }
         private static void Create_File(string dir)
         {
             Console.Write("Введите имя файла: ");
             string file_Name = Console.ReadLine();
-            Console.Write("Введите расширения файла: ");
+            Console.Write("Введите расширения файла(без точки): ");
             string extend = Console.ReadLine();
             string filePath = Path.Combine(dir, file_Name + "." + extend);
             if (!File.Exists(filePath))
@@ -57,32 +74,6 @@ namespace Practic7
             if (!Directory.Exists(dir_path))
             {
                 Directory.CreateDirectory(dir_path);
-            }
-        }
-        private static void Delete_File(string file_path)
-        {
-            if (File.Exists(file_path))
-            {
-                File.Delete(file_path);
-                Console.WriteLine("Файл успешно удален.");
-            }
-            else
-            {
-                Console.WriteLine("Файл не найден.");
-            }
-        }
-        private static void Delete_Dir(string dir_path)
-        {
-            {
-                if (Directory.Exists(dir_path))
-                {
-                    Directory.Delete(dir_path, true);
-                    Console.WriteLine("Директория успешно удалена.");
-                }
-                else
-                {
-                    Console.WriteLine("Директория не найдена.");
-                }
             }
         }
     }
