@@ -45,13 +45,13 @@ namespace Practic7
                 foreach (string path in paths)
                 {
 
-                    Console.WriteLine($"  {Path.GetFileName(path),-70}{File.GetLastWriteTime(path)}");
+                    Console.WriteLine($"  {Path.GetFileName(path),-23}\t\t\t\t\t\t{File.GetLastWriteTime(path)}");
                     k += 1;
                 }
                 foreach (string file in files)
                 {
                     FileInfo lenfile = new(file);
-                    Console.WriteLine($"  {Path.GetFileName(file),-42}{(lenfile.Length) / 1024 , - 28}{File.GetLastWriteTime(file)}");
+                    Console.WriteLine($"  {Path.GetFileName(file),-23}\t\t\t{(lenfile.Length) / 1024}\t\t\t{File.GetLastWriteTime(file)}");
                     k += 1;
                 }
                 int[] pos = Arrows.Arrow(k - 1, 9);
