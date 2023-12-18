@@ -44,14 +44,14 @@ namespace Practic10
                         Create_user(id);
                         break;
                     case (int)Arrows.Keys.S:
-                        Search_User(id);
+                        Search_user(id);
                         break;
                     default: break;
                 }
             }
 
         }
-        private static void Search_User(int id)
+        private static void Search_user(int id)
         {
             Console.Clear();
             string syspath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);

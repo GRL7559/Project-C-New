@@ -40,6 +40,9 @@ namespace Practic10
             string login = "";
             string password = "";
             string syspath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            List<Check> checks = new();
+            List<CurrentProduct> currentproducts = new();
+            List<Product> products = new();
             List<Employee> employees = new();
             List<User> users = new() { new User() { Id = 1, Login = "Administrator", Password = "123", Role = 0 } };
             Console.WriteLine("Здравствуйте, пожалуйста, авторизуйтесь.");
@@ -83,13 +86,21 @@ namespace Practic10
                                     {
                                         JSON.Serialization(syspath + "\\Users.json", users);
                                     }
-                                    if (File.Exists(syspath + "\\Users.json"))
-                                    {
-                                        employees = JSON.Deserialization<List<Employee>>((syspath + "\\Employees.json"));
-                                    }
-                                    else
+                                    if (!File.Exists(syspath + "\\Employees.json"))
                                     {
                                         JSON.Serialization(syspath + "\\Employees.json", employees);
+                                    }
+                                    if (!File.Exists(syspath + "\\Products.json"))
+                                    {
+                                        JSON.Serialization(syspath + "\\Products.json", products);
+                                    }
+                                    if (!File.Exists(syspath + "\\CurrentProducts.json"))
+                                    {
+                                        JSON.Serialization(syspath + "\\CurrentProducts.json", currentproducts);
+                                    }
+                                    if (!File.Exists(syspath + "\\Check.json"))
+                                    {
+                                        JSON.Serialization(syspath + "\\Check.json", checks);
                                     }
                                     foreach (User user in users)
                                     {

@@ -24,7 +24,7 @@ namespace Practic10
                 Console.WriteLine("C - создать");
                 Console.SetCursorPosition(101, 6);
                 Console.WriteLine("S - поиск");
-                int maxpos = 2;
+                int maxpos = 3;
                 Console.SetCursorPosition(0, 3);
                 foreach (Employee employee in employees)
                 {
@@ -442,7 +442,7 @@ namespace Practic10
                         return;
                     case (int)Arrows.Keys.S:
                         employees.Add(newemployee);
-                        Update((syspath + "\\Users.json"), employees);
+                        Update((syspath + "\\Employees.json"), employees);
                         continue;
                     default: break;
                 }
@@ -599,7 +599,7 @@ namespace Practic10
                     while (true)
                     {
                         Console.SetCursorPosition(11, 4);
-                        Console.WriteLine(new string(' ', 90));
+                        Console.WriteLine(new string(' ', 30));
                         Console.SetCursorPosition(11, 4);
                         string newSurname = Console.ReadLine();
                         if (newSurname != "")
@@ -623,7 +623,7 @@ namespace Practic10
                     while (true)
                     {
                         Console.SetCursorPosition(7, 5);
-                        Console.WriteLine(new string(' ', 90));
+                        Console.WriteLine(new string(' ', 30));
                         Console.SetCursorPosition(7, 5);
                         string newName = Console.ReadLine();
                         if (newName != "")
@@ -634,7 +634,7 @@ namespace Practic10
                         else
                         {
                             Console.SetCursorPosition(7, 5);
-                            Console.WriteLine("Имя не может быть пустой ");
+                            Console.WriteLine("Имя не может быть пустым ");
                             Thread.Sleep(1000);
                             Console.SetCursorPosition(7, 5);
                             Console.WriteLine(new string(' ', 30));
@@ -645,7 +645,7 @@ namespace Practic10
                     break;
                 case 6:
                     Console.SetCursorPosition(12, 6);
-                    Console.WriteLine(new string(' ', 90));
+                    Console.WriteLine(new string(' ', 30));
                     Console.SetCursorPosition(12, 6);
                     newemployee.Firstname = Console.ReadLine();
                     break;
@@ -676,7 +676,7 @@ namespace Practic10
                             }
                         }
                         int lenth = Convert.ToString(newPasport).Length;
-                        if (lenth == 11)
+                        if (lenth == 10)
                         {
                             newemployee.Pasport = newPasport;
                             break;
@@ -687,7 +687,7 @@ namespace Practic10
                             Console.WriteLine("Введите серию и номер паспорта");
                             Thread.Sleep(1000);
                             Console.SetCursorPosition(11, 7);
-                            Console.WriteLine(new string(' ', 90));
+                            Console.WriteLine(new string(' ', 30));
                             Console.SetCursorPosition(11, 7);
                             Console.WriteLine($"{newemployee.Role}");
                         }
@@ -783,7 +783,8 @@ namespace Practic10
                                 Console.WriteLine($"{newemployee.UserId}");
                             }
                         }
-                        List<User> users = new();
+                        string syspath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                        List<User> users = Read<List<User>>(syspath + "\\Users.json");
                         bool confirm = false;
                         foreach (User user in users)
                         {
@@ -804,7 +805,7 @@ namespace Practic10
                             Console.WriteLine("пользователя с таким ID не существует");
                             Thread.Sleep(1000);
                             Console.SetCursorPosition(19, 10);
-                            Console.WriteLine(new string(' ',90));
+                            Console.WriteLine(new string(' ',37));
                             Console.SetCursorPosition(19, 10);
                             Console.WriteLine($"{newemployee.UserId}");
                         }

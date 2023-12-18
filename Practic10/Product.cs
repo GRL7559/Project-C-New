@@ -8,5 +8,10 @@ namespace Practic10
 {
     internal class Product
     {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public int Price { get; set; }
+        public int Remains { get; set; }
+
     }
 }
