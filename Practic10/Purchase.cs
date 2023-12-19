@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace Practic10
 {
-    internal class Check
+    internal class Purchase
     {
-        public int Id {  get; set; }
-        public string Name { get; set; }
+        public int Number { get; set; }
+        public List<CurrentProduct> Products { get; set; }
+        public DateOnly Date {  get; set; }
         public double Amount { get; set; }
-        public DateOnly Date { get; set; }
-        public bool PlMin { get; set; }
     }
 }

@@ -22,7 +22,7 @@ namespace Practic10
                 Console.SetCursorPosition(0, 3);
                 foreach (Product product in products)
                 {
-                    Console.WriteLine($"   {product.Id,-22}{product.Title,-25}{product.Price,-25}{(User.Roles)product.Remains,-24}");
+                    Console.WriteLine($"   {product.Id,-22}{product.Title,-25}{product.Price,-25}{product.Remains,-24}");
                     maxpos++;
                 }
                 int[] pos = Arrows.Arrow(maxpos, 3);

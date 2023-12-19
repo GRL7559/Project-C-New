@@ -8,6 +8,6 @@ namespace Practic10
 {
     internal class CurrentProduct:Product
     {
-
+        public int Currentquantity { get; set; }
     }
 }

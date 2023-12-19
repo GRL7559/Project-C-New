@@ -18,10 +18,13 @@ namespace Practic10
                         Manager emp1 = new(user.Id);
                         break;
                     case (int)User.Roles.Accountant:
+                        Accountant emp2 = new(user.Id);
                         break;
                     case (int)User.Roles.Warehouse:
+                        Warehouse emp3 = new(user.Id);
                         break;
                     case (int)User.Roles.Cashier:
+                        Cashier emp4 = new(user.Id);
                         break;
                 }
             }

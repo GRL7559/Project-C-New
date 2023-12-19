@@ -40,6 +40,7 @@ namespace Practic10
             string login = "";
             string password = "";
             string syspath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            List<Purchase> purchases = new();
             List<Check> checks = new();
             List<CurrentProduct> currentproducts = new();
             List<Product> products = new();
@@ -98,9 +99,13 @@ namespace Practic10
                                     {
                                         JSON.Serialization(syspath + "\\CurrentProducts.json", currentproducts);
                                     }
-                                    if (!File.Exists(syspath + "\\Check.json"))
+                                    if (!File.Exists(syspath + "\\Checks.json"))
                                     {
                                         JSON.Serialization(syspath + "\\Check.json", checks);
+                                    }
+                                    if (!File.Exists(syspath + "\\Purchases.json"))
+                                    {
+                                        JSON.Serialization(syspath + "\\Purchases.json", purchases);
                                     }
                                     foreach (User user in users)
                                     {

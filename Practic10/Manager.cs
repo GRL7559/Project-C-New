@@ -61,10 +61,16 @@ namespace Practic10
             {
                 Console.SetCursorPosition(0, 2);
                 Console.WriteLine($"  ID: ");
-                Console.WriteLine($"  Логин: ");
-                Console.WriteLine($"  Пароль: ");
+                Console.WriteLine($"  Возраст: ");
+                Console.WriteLine($"  Фамилия: ");
+                Console.WriteLine($"  Имя: ");
+                Console.WriteLine($"  Отчество: ");
+                Console.WriteLine($"  Паспорт: ");
                 Console.WriteLine($"  Роль: ");
-                int[] pos = Arrows.Arrow(5, 2);
+                Console.WriteLine($"  Зарплата: ");
+                Console.WriteLine($"  ID пользователя: ");
+                Console.WriteLine($"  Дата последнего изменения: ");
+                int[] pos = Arrows.Arrow(10, 2);
                 switch (pos[0])
                 {
                     case (int)Arrows.Keys.Enter:
@@ -338,15 +344,6 @@ namespace Practic10
                                         Console.WriteLine($"{searchemployee.UserId}");
                                     }
                                 }
-                                break;
-                            case 11:
-                                Console.SetCursorPosition(29, 11);
-                                Console.WriteLine("Вы не можете изменить этот параметр");
-                                Thread.Sleep(1000);
-                                Console.SetCursorPosition(29, 11);
-                                Console.WriteLine(new string(' ', 35));
-                                Console.SetCursorPosition(29, 11);
-                                Console.WriteLine($"{searchemployee.Date}"); //сделать ввод даты с клавиатуры
                                 break;
                         }
                         break;
