@@ -9,5 +9,6 @@ namespace Practic10
     internal class CurrentProduct:Product
     {
         public int Currentquantity { get; set; }
+        public double Currentamount { get; set; }
     }
 }

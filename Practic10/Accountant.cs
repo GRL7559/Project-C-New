@@ -16,16 +16,16 @@ namespace Practic10
             {
                 string syspath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
                 List<Check> сhecks = Accountant_menu(syspath, id);
-                Console.WriteLine($"   {"ID",-10}{"Название",-25}{"Сумма",-25}{"Доход/Выплата",-24}{"Дата",-15}");
-                Console.SetCursorPosition(101, 3);
+                Console.WriteLine($"   {"ID",-10}{"Название",-25}{"Сумма",-20}{"Доход/Выплата",-24}{"Дата",-15}");
+                Console.SetCursorPosition(101, 2);
                 Console.WriteLine("Enter - открыть");
-                Console.SetCursorPosition(101, 4);
+                Console.SetCursorPosition(101, 3);
                 Console.WriteLine("Escape - выйти");
-                Console.SetCursorPosition(101, 5);
+                Console.SetCursorPosition(101, 4);
                 Console.WriteLine("C - создать");
-                Console.SetCursorPosition(101, 6);
+                Console.SetCursorPosition(101, 5);
                 Console.WriteLine("S - поиск");
-                Console.SetCursorPosition(101, 7);
+                Console.SetCursorPosition(101, 6);
                 Console.WriteLine("Итого:");
                 int maxpos = 2;
                 Console.SetCursorPosition(0, 3);
@@ -43,13 +43,13 @@ namespace Practic10
                     }
                     maxpos++;
                 }
-                Console.SetCursorPosition(101, 8);
+                Console.SetCursorPosition(101, 7);
                 Console.WriteLine($"{result}");
                 int[] pos = Arrows.Arrow(maxpos, 3);
                 switch (pos[0])
                 {
                     case (int)Arrows.Keys.Enter:
-                        Open_сheck(pos[1] - 3, id);
+                        if (maxpos > 3) Open_сheck(pos[1] - 3, id);
                         break;
                     case (int)Arrows.Keys.Escape:
                         Console.Clear();
@@ -207,8 +207,6 @@ namespace Practic10
             Console.SetCursorPosition(101, 3);
             Console.WriteLine("S - сохранить");
             Console.SetCursorPosition(101, 4);
-            Console.WriteLine("Delete - удалить");
-            Console.SetCursorPosition(101, 5);
             Console.WriteLine("Escape - выйти");
             Check newсheck = new();
             while (true)
@@ -229,8 +227,8 @@ namespace Practic10
                         return;
                     case (int)Arrows.Keys.S:
                         сhecks.Add(newсheck);
-                        Update((syspath + "\\Checks.json"), сhecks);//функция апдейта
-                        continue;
+                        Update((syspath + "\\Checks.json"), сhecks);
+                        return;
                     default: break;
                 }
             }
@@ -271,7 +269,7 @@ namespace Practic10
                         return;
                     case (int)Arrows.Keys.S:
                         Update((syspath + "\\Checks.json"), сhecks);
-                        continue;
+                        return;
                     case (int)Arrows.Keys.Delete:
                         сhecks.RemoveAt(pos);
                         Update((syspath + "\\Checks.json"), сhecks);
@@ -291,7 +289,7 @@ namespace Practic10
                     while (true)
                     {
                         Console.SetCursorPosition(6, 2);
-                        Console.WriteLine(new string(' ', 10));
+                        Console.WriteLine(new string(' ', 30));
                         Console.SetCursorPosition(6, 2);
                         Console.WriteLine($"{newсheck.Id}");
                         int newId;
@@ -385,6 +383,7 @@ namespace Practic10
                     }
                     break;
             }
+            newсheck.Date = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
             return newсheck;
         }
         private static List<Check> Accountant_menu(string syspath, int Id)

@@ -95,28 +95,27 @@ namespace Practic10
                                     {
                                         JSON.Serialization(syspath + "\\Products.json", products);
                                     }
-                                    if (!File.Exists(syspath + "\\CurrentProducts.json"))
-                                    {
-                                        JSON.Serialization(syspath + "\\CurrentProducts.json", currentproducts);
-                                    }
                                     if (!File.Exists(syspath + "\\Checks.json"))
                                     {
-                                        JSON.Serialization(syspath + "\\Check.json", checks);
+                                        JSON.Serialization(syspath + "\\Checks.json", checks);
                                     }
                                     if (!File.Exists(syspath + "\\Purchases.json"))
                                     {
                                         JSON.Serialization(syspath + "\\Purchases.json", purchases);
                                     }
+                                    bool passage = false;
                                     foreach (User user in users)
                                     {
                                         if (password == user.Password && login == user.Login)
                                         {
-                                            Console.Clear(); 
+                                            Console.Clear();
+                                            passage = true;
                                             return user;
                                         }
-                                        else Console.WriteLine("Пользователь не найден");
                                     }
-                                }else Console.WriteLine("Введите логин и пароль");
+                                    if (!passage) Console.WriteLine("Пользователь не найден");
+                                }
+                                else Console.WriteLine("Введите логин и пароль");
                                 break;
                         }
                         break;

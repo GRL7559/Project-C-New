@@ -10,13 +10,13 @@ namespace Practic10
                 string syspath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
                 List<Product> products = Warehouse_menu(syspath, id);
                 Console.WriteLine($"   {"ID",-22}{"Название",-25}{"Цена",-25}{"Остаток",-24}");
-                Console.SetCursorPosition(101, 3);
+                Console.SetCursorPosition(101, 2);
                 Console.WriteLine("Enter - открыть");
-                Console.SetCursorPosition(101, 4);
+                Console.SetCursorPosition(101, 3);
                 Console.WriteLine("Escape - выйти");
-                Console.SetCursorPosition(101, 5);
+                Console.SetCursorPosition(101, 4);
                 Console.WriteLine("C - создать");
-                Console.SetCursorPosition(101, 6);
+                Console.SetCursorPosition(101, 5);
                 Console.WriteLine("S - поиск");
                 int maxpos = 2;
                 Console.SetCursorPosition(0, 3);
@@ -29,7 +29,7 @@ namespace Practic10
                 switch (pos[0])
                 {
                     case (int)Arrows.Keys.Enter:
-                        Open_product(pos[1] - 3, id);
+                        if (maxpos > 3) Open_product(pos[1] - 3, id);
                         break;
                     case (int)Arrows.Keys.Escape:
                         Console.Clear();
@@ -94,9 +94,9 @@ namespace Practic10
                                 }
                                 break;
                             case 3:
-                                Console.SetCursorPosition(9, 3);
+                                Console.SetCursorPosition(12, 3);
                                 Console.WriteLine(new string(' ', 90));
-                                Console.SetCursorPosition(9, 3);
+                                Console.SetCursorPosition(12, 3);
                                 searchproduct.Title = Console.ReadLine();
                                 break;
                             case 4:
@@ -107,42 +107,42 @@ namespace Practic10
                                 {
                                     try
                                     {
-                                        Console.SetCursorPosition(8, 5);
+                                        Console.SetCursorPosition(10, 4);
                                         searchproduct.Price = Convert.ToInt32(Console.ReadLine());
                                         break;
                                     }
                                     catch
                                     {
-                                        Console.SetCursorPosition(8, 5);
+                                        Console.SetCursorPosition(10, 4);
                                         Console.WriteLine("Введено некорректное значение");
                                         Thread.Sleep(1000);
-                                        Console.SetCursorPosition(8, 5);
+                                        Console.SetCursorPosition(10, 4);
                                         Console.WriteLine(new string(' ', 30));
-                                        Console.SetCursorPosition(8, 5);
+                                        Console.SetCursorPosition(10, 4);
                                         Console.WriteLine($"{searchproduct.Price}");
                                     }
                                 }
                                 break;
                             case 5:
-                                Console.SetCursorPosition(8, 5);
+                                Console.SetCursorPosition(11, 5);
                                 Console.WriteLine(' ');
-                                Console.SetCursorPosition(8, 5);
+                                Console.SetCursorPosition(11, 5);
                                 while (true)
                                 {
                                     try
                                     {
-                                        Console.SetCursorPosition(8, 5);
+                                        Console.SetCursorPosition(11, 5);
                                         searchproduct.Remains = Convert.ToInt32(Console.ReadLine());
                                         break;
                                     }
                                     catch
                                     {
-                                        Console.SetCursorPosition(8, 5);
+                                        Console.SetCursorPosition(11, 5);
                                         Console.WriteLine("Введено некорректное значение");
                                         Thread.Sleep(1000);
-                                        Console.SetCursorPosition(8, 5);
+                                        Console.SetCursorPosition(11, 5);
                                         Console.WriteLine(new string(' ', 30));
-                                        Console.SetCursorPosition(8, 5);
+                                        Console.SetCursorPosition(11, 5);
                                         Console.WriteLine($"{searchproduct.Remains}");
                                     }
                                 }
@@ -195,10 +195,7 @@ namespace Practic10
             Console.SetCursorPosition(101, 3);
             Console.WriteLine("S - сохранить");
             Console.SetCursorPosition(101, 4);
-            Console.WriteLine("Delete - удалить");
-            Console.SetCursorPosition(101, 5);
             Console.WriteLine("Escape - выйти");
-            Console.SetCursorPosition(101, 6);
             Product newproduct = new();
             while (true)
             {
@@ -219,7 +216,7 @@ namespace Practic10
                     case (int)Arrows.Keys.S:
                         products.Add(newproduct);
                         Update((syspath + "\\Products.json"), products);//функция апдейта
-                        continue;
+                        return;
                     default: break;
                 }
             }
@@ -260,7 +257,7 @@ namespace Practic10
                         return;
                     case (int)Arrows.Keys.S:
                         Update((syspath + "\\Products.json"), products);
-                        continue;
+                        return;
                     case (int)Arrows.Keys.Delete:
                         products.RemoveAt(pos);
                         Update((syspath + "\\Products.json"), products);
@@ -280,7 +277,7 @@ namespace Practic10
                     while (true)
                     {
                         Console.SetCursorPosition(6, 2);
-                        Console.WriteLine(new string(' ', 10));
+                        Console.WriteLine(new string(' ', 30));
                         Console.SetCursorPosition(6, 2);
                         Console.WriteLine($"{newproduct.Id}");
                         int newId;
@@ -327,57 +324,54 @@ namespace Practic10
                     }
                     break;
                 case 3:
-                    Console.SetCursorPosition(9, 3);
-                    Console.WriteLine(new string(' ', 90));
-                    Console.SetCursorPosition(9, 3);
+                    Console.SetCursorPosition(12, 3);
+                    Console.WriteLine(new string(' ', 30));
+                    Console.SetCursorPosition(12, 3);
                     newproduct.Title = Console.ReadLine();
                     break;
                 case 4:
-                    Console.SetCursorPosition(10, 4);
-                    Console.WriteLine(new string(' ', 90));
-                    Console.SetCursorPosition(10, 4);
+                    Console.SetCursorPosition(8, 4);
+                    Console.WriteLine(new string(' ', 30));
+                    Console.SetCursorPosition(8, 4);
                     int newPrice;
                     while (true)
                     {
                         try
                         {
-                            Console.SetCursorPosition(8, 5);
+                            Console.SetCursorPosition(8, 4);
                             newproduct.Price = Convert.ToInt32(Console.ReadLine());
                             break;
                         }
                         catch
                         {
-                            Console.SetCursorPosition(8, 5);
+                            Console.SetCursorPosition(8, 4);
                             Console.WriteLine("Введено некорректное значение");
                             Thread.Sleep(1000);
-                            Console.SetCursorPosition(8, 5);
+                            Console.SetCursorPosition(8, 4);
                             Console.WriteLine(new string(' ', 30));
-                            Console.SetCursorPosition(8, 5);
+                            Console.SetCursorPosition(8, 4);
                             Console.WriteLine($"{newproduct.Price}");
                         }
                     }
                     break;
                 case 5:
-                    Console.SetCursorPosition(8, 5);
-                    Console.WriteLine(' ');
-                    Console.SetCursorPosition(8, 5);
                     int newRemains;
                     while (true)
                     {
                         try
                         {
-                            Console.SetCursorPosition(8, 5);
+                            Console.SetCursorPosition(11, 5);
                             newproduct.Remains = Convert.ToInt32(Console.ReadLine());
                             break;
                         }
                         catch
                         {
-                            Console.SetCursorPosition(8, 5);
+                            Console.SetCursorPosition(11, 5);
                             Console.WriteLine("Введено некорректное значение");
                             Thread.Sleep(1000);
-                            Console.SetCursorPosition(8, 5);
+                            Console.SetCursorPosition(11, 5);
                             Console.WriteLine(new string(' ', 30));
-                            Console.SetCursorPosition(8, 5);
+                            Console.SetCursorPosition(11, 5);
                             Console.WriteLine($"{newproduct.Remains}");
                         }
                     }

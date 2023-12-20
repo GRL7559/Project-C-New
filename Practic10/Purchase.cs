@@ -8,7 +8,6 @@ namespace Practic10
 {
     internal class Purchase
     {
-        public int Number { get; set; }
         public List<CurrentProduct> Products { get; set; }
         public DateOnly Date {  get; set; }
         public double Amount { get; set; }

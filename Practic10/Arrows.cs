@@ -15,7 +15,9 @@ namespace Practic5
             Enter = -1,
             S = -2,
             Delete = -3,
-            C = -4,
+            C = -4, 
+            Right = -5,
+            Left = -6
         }
         public static int[] Arrow(int maxpos, int minpos)
         {
@@ -66,7 +68,12 @@ namespace Practic5
                     case ConsoleKey.C:
                         int[] create = new[] { (int)Keys.C, pos };
                         return create;
-
+                    case ConsoleKey.RightArrow:
+                        int[] plus = new[] { (int)Keys.Right, pos };
+                        return plus;
+                    case ConsoleKey.LeftArrow:
+                        int[] minus = new[] { (int)Keys.Left, pos };
+                        return minus;
                 }
             } while (true);
         }

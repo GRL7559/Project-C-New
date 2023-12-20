@@ -16,13 +16,13 @@ namespace Practic10
                 string syspath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
                 List<Employee> employees = Manager_menu(syspath, id);
                 Console.WriteLine($"   {"ID",-22}{"Имя",-25}{"Фамилия",-25}{"Роль",-24}");
-                Console.SetCursorPosition(101, 3);
+                Console.SetCursorPosition(101, 2);
                 Console.WriteLine("Enter - открыть");
-                Console.SetCursorPosition(101, 4);
+                Console.SetCursorPosition(101, 3);
                 Console.WriteLine("Escape - выйти");
-                Console.SetCursorPosition(101, 5);
+                Console.SetCursorPosition(101, 4);
                 Console.WriteLine("C - создать");
-                Console.SetCursorPosition(101, 6);
+                Console.SetCursorPosition(101, 5);
                 Console.WriteLine("S - поиск");
                 int maxpos = 3;
                 Console.SetCursorPosition(0, 3);
@@ -35,7 +35,7 @@ namespace Practic10
                 switch (pos[0])
                 {
                     case (int)Arrows.Keys.Enter:
-                        Open_employee(pos[1] - 3, id);
+                        if (maxpos > 3) Open_employee(pos[1] - 3, id);
                         break;
                     case (int)Arrows.Keys.Escape:
                         Console.Clear();
@@ -399,20 +399,18 @@ namespace Practic10
             Console.SetCursorPosition(101, 3);
             Console.WriteLine("S - сохранить");
             Console.SetCursorPosition(101, 4);
-            Console.WriteLine("Delete - удалить");
-            Console.SetCursorPosition(101, 5);
             Console.WriteLine("Escape - выйти");
-            Console.SetCursorPosition(101, 6);
+            Console.SetCursorPosition(101, 5);
             Console.WriteLine("Роли :");
-            Console.SetCursorPosition(101, 7);
+            Console.SetCursorPosition(101, 6);
             Console.WriteLine("0 - Админимстратор");
-            Console.SetCursorPosition(101, 8);
+            Console.SetCursorPosition(101, 7);
             Console.WriteLine("1 - Менеджер");
-            Console.SetCursorPosition(101, 9);
+            Console.SetCursorPosition(101, 8);
             Console.WriteLine("2 - Бухгалтер");
-            Console.SetCursorPosition(101, 10);
+            Console.SetCursorPosition(101, 9);
             Console.WriteLine("3 - Зав.Складом");
-            Console.SetCursorPosition(101, 11);
+            Console.SetCursorPosition(101, 10);
             Console.WriteLine("4 - Кассир");
             Employee newemployee = new();
             while (true)
@@ -440,7 +438,7 @@ namespace Practic10
                     case (int)Arrows.Keys.S:
                         employees.Add(newemployee);
                         Update((syspath + "\\Employees.json"), employees);
-                        continue;
+                        return;
                     default: break;
                 }
             }
@@ -505,7 +503,7 @@ namespace Practic10
                         return;
                     case (int)Arrows.Keys.S:
                         Update((syspath + "\\Employees.json"), employees);
-                        continue;
+                        return;
                     case (int)Arrows.Keys.Delete:
                         employees.RemoveAt(pos);
                         Update((syspath + "\\Employees.json"), employees);
@@ -523,7 +521,7 @@ namespace Practic10
                     while (true)
                     {
                         Console.SetCursorPosition(6, 2);
-                        Console.WriteLine(new string(' ', 10));
+                        Console.WriteLine(new string(' ', 30));
                         Console.SetCursorPosition(6, 2);
                         Console.WriteLine($"{newemployee.Id}");
                         int newId;
